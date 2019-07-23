@@ -45,7 +45,7 @@ async function getCourses() {
     const courses = await Course
         // .find({ author: 'Mosh', isPublished: true}) // Filter
         // .find({ price: 10 })
-        .find({ price: { $gt: 10} }) // price is greater than 10
+        .find({ price: { $gt: 10, $lte: 20} })
         .limit(10) // Display max 10 results
         .sort({ name: 1 }) // Ascending = 1, Desc = -1
         .select({ name: 1, tags: 1 }); // Display on these two fields (id gets added automatically)
