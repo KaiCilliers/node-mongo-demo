@@ -43,11 +43,13 @@ async function createCourse() {
 
 async function getCourses() {
     const courses = await Course
-        // .find({ author: 'Mosh', isPublished: true}) // Filter
-        .find({ price: { $in: [10, 15, 20]} }) // price is 10, 15, or 20
-        .limit(10) // Display max 10 results
-        .sort({ name: 1 }) // Ascending = 1, Desc = -1
-        .select({ name: 1, tags: 1 }); // Display on these two fields (id gets added automatically)
+        // .find({ author: 'Mosh', isPublished: true})
+        .find() // this is same as using (.and([ {}, {} ]))
+        // You will get courses published by Mosh or is published
+        .or([ { author: 'Mosh' }, { isPublished: true } ]) // each object is a filter
+        .limit(10)
+        .sort({ name: 1 })
+        .select({ name: 1, tags: 1 });
     console.log(courses);
 }
 

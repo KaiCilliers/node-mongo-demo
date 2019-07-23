@@ -7,3 +7,6 @@
     - lte (less than or equal to)
     - in
     - nin (not in)
+- Mongo logical operators
+    - or
+    - and
