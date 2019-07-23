@@ -1,0 +1,14 @@
+mongoimport --db mongo-exercises --collection courses --drop --file exercise-data.json --jsonArray
+
+syntax:
+- command to import data into db
+- flag to specify name of DB (mongo-exercises)
+- flag to specify name of collection (courses)
+- flag to drop db if it exists
+- flag to pass data from a file to db
+- need this flag because data in file is a jsonArray
+
+Instructions
+get all published backend courses
+sort them by name
+display only their name and author
