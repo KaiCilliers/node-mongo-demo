@@ -12,28 +12,33 @@ mongoose.connect('mongodb://localhost/mongo-exercises')
 /**
  * Schema and Model
  */
-const courseSchema = mongoose.Schema({
-    tags: [String],
-    date: { type: Date, default: Date.now},
+const courseSchema = new mongoose.Schema({
     name: String,
     author: String,
+    tags: [String],
+    date: Date,
     isPublished: Boolean,
     price: Number
 });
+
 const Course = mongoose.model('Course', courseSchema);
 
 /**
  * Calls
  */
-getCourses();
+run();
 
 /**
  * Functions
  */
 async function getCourses() {
-    const courses = await Course
+    return await Course
     .find({ isPublished: true, tags: 'backend'})
-    .sort({ name: 1 })
-    .select({ name: 1, author: 1});
+    .sort('name') // Asc, '-name' is Desc
+    .select('name author'); // show only name and author fields
+}
+
+async function run() {
+    const courses = await getCourses();
     console.log(courses);
 }
