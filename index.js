@@ -15,7 +15,12 @@ const courseSchema = new mongoose.Schema({
     author: String,
     tags: [String],
     date: { type: Date, default: Date.now },
-    isPublished: Boolean
+    isPublished: Boolean,
+    price: {
+        type: Number,
+        // arrow function does not work here. They don't have 'this'
+        required: function() { return this.isPublished; } // If isPublished, then price is required
+    }
 });
 
 /**
