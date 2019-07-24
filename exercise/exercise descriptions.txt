@@ -20,4 +20,4 @@ disply only name and author
 
 Instructions 3
 get all published courses that are $15 or more
-and that have the word 'by' in the title
+OR that have the word 'by' in the title
