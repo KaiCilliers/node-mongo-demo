@@ -56,7 +56,6 @@ async function getCourses() {
 }
 
 async function updateCourse(id) {
-    // Approach two: Update first and get the (original) document updated
     const course = await Course.findByIdAndUpdate(id, {
         $set: {
             author: 'Jason',
@@ -66,7 +65,12 @@ async function updateCourse(id) {
     console.log(course);
 }
 
+async function removeCourse(id) {
+    const result = await Course.deleteOne({ _id: id});
+    console.log(result);
+}
+
 /**
  * Calls
  */
-updateCourse('5d36d0e7bede471f70d9057c');
+removeCourse('5d36d0e7bede471f70d9057c');
