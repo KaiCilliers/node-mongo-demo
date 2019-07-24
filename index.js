@@ -66,7 +66,7 @@ async function createCourse() {
         tags: null,
         isPublished: true,
         price: 25,
-        category: 'web'
+        category: '-'
     });
     
     /**
@@ -79,7 +79,9 @@ async function createCourse() {
         // console.log(result);
     } 
     catch(err) {
-        console.log('Validation failed: ', err.message);
+        for (field in err.errors) {
+            console.log(err.errors[field].message);
+        }
     }
 }
 
