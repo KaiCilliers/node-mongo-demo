@@ -59,10 +59,10 @@ async function updateCourse(id) {
     // Approach two: Update first and get the (original) document updated
     const course = await Course.findByIdAndUpdate(id, {
         $set: {
-            author: 'James',
-            isPublished: true
+            author: 'Jason',
+            isPublished: false
         }
-    });
+    }, { new: true});
     console.log(course);
 }
 
