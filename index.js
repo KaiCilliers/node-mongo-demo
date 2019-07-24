@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/playground')
  * Defining 'layout' of a document
  */
 const courseSchema = new mongoose.Schema({
-    name: { type: String, required: true},
+    name: { type: String, required: true}, // built-in validator
     author: String,
     tags: [String],
     date: { type: Date, default: Date.now },
