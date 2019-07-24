@@ -27,9 +27,14 @@ const courseSchema = new mongoose.Schema({
     tags: {
         type: Array,
         validate: {
-            validator: function(v) { 
-                // v has a value and length is not 0
-                return v && v.length > 0;
+            isAsync: true,
+            // sometimes validation logic might involve reading something from a DB or remote service
+            validator: function(v, callback) {
+                // Do some async work then when result is ready call callback()
+                setTimeout(() => {
+                    const result = v && v.length > 0;
+                    callback(result);
+                }, 4000);
             },
             message: 'A course should have at least one tag'
         }
