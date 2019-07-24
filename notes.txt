@@ -10,3 +10,11 @@
 - Mongo logical operators
     - or
     - and
+- Document updates approachs
+    - Query first
+        - findbyId()
+        - Modify its properties
+        - save()
+    - Update first
+        - update directly
+        - optionally get the updated document
