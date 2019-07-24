@@ -11,7 +11,7 @@ mongoose.connect('mongodb://localhost/playground')
  * Defining 'layout' of a document
  */
 const courseSchema = new mongoose.Schema({
-    name: String,
+    name: { type: String, required: true},
     author: String,
     tags: [String],
     date: { type: Date, default: Date.now },
@@ -28,7 +28,7 @@ const Course = mongoose.model('Course', courseSchema);
  */
 async function createCourse() {
     const course = new Course({
-        name: 'Angular Course',
+        // name: 'Angular Course',
         author: 'Mosh',
         tags: ['angular', 'frontend'],
         isPublished: true
@@ -37,8 +37,15 @@ async function createCourse() {
     /**
      * Save to database
      */
-    const result = await course.save();
-    console.log(result);
+    try {
+        // valdiates the course
+        await course.validate();
+        // const result = await course.save();
+        // console.log(result);
+    } 
+    catch(err) {
+        console.log('Validation failed: ', err.message);
+    }
 }
 
 async function getCourses() {
@@ -74,4 +81,4 @@ async function removeCourse(id) {
 /**
  * Calls
  */
-removeCourse('5d36d0a61b6c5d2a008df13e');
+createCourse();
