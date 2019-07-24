@@ -18,3 +18,5 @@
     - Update first
         - update directly
         - optionally get the updated document
+- Mongo DB update operators
+    - There is a few https://docs.mongodb.com/manual/reference/operator/update/

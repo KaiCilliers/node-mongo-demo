@@ -56,18 +56,15 @@ async function getCourses() {
 }
 
 async function updateCourse(id) {
-    // Approach one: Query first
-    const course = await Course.findById(id);
-    if (!course) return;
-    // One way
-    // course.isPublished = true;
-    // course.author = 'Another Author'
-    // Another way
-    course.set({
-        isPublished: true,
-        author: 'Another Author'
+    // Approach two: Update first
+    // Update all courses that have a value of false for isPublished
+    // const course = await Course.update({ isPublished: false});
+    const result = await Course.update({ _id: id }, {
+        $set: {
+            author: 'Mosh311313',
+            isPublished: false
+        }
     });
-    const result = await course.save();
     console.log(result);
 }
 
