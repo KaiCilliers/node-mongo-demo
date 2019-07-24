@@ -11,7 +11,18 @@ mongoose.connect('mongodb://localhost/playground')
  * Defining 'layout' of a document
  */
 const courseSchema = new mongoose.Schema({
-    name: { type: String, required: true}, // built-in validator
+    name: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255
+        // match: /pattern/
+    },
+    category: {
+        type: String,
+        enum: ['web', 'mobile', 'network'], // has to be one of the values
+        required: true
+    },
     author: String,
     tags: [String],
     date: { type: Date, default: Date.now },
@@ -19,7 +30,9 @@ const courseSchema = new mongoose.Schema({
     price: {
         type: Number,
         // arrow function does not work here. They don't have 'this'
-        required: function() { return this.isPublished; } // If isPublished, then price is required
+        required: function() { return this.isPublished; }, // If isPublished, then price is required
+        min: 10,
+        max: 500
     }
 });
 
@@ -33,10 +46,12 @@ const Course = mongoose.model('Course', courseSchema);
  */
 async function createCourse() {
     const course = new Course({
-        // name: 'Angular Course',
+        name: 'Angular Course',
         author: 'Mosh',
         tags: ['angular', 'frontend'],
-        isPublished: true
+        isPublished: true,
+        price: 155555,
+        category: '-'
     });
     
     /**
