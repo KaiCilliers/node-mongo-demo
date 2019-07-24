@@ -8,7 +8,16 @@ syntax:
 - flag to pass data from a file to db
 - need this flag because data in file is a jsonArray
 
-Instructions
+Instructions 1
 get all published backend courses
 sort them by name
 display only their name and author
+
+Instuctions 2
+get all published backened and frontend courses
+sort them by price in a descending order
+disply only name and author
+
+Instructions 3
+get all published courses that are $15 or more
+and that have the word 'by' in the title
