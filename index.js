@@ -21,7 +21,9 @@ const courseSchema = new mongoose.Schema({
     category: {
         type: String,
         enum: ['web', 'mobile', 'network'], // has to be one of the values
-        required: true
+        required: true,
+        lowercase: true, // or uppercase
+        trim: true // remove padding :)
     },
     author: String,
     tags: {
@@ -46,7 +48,9 @@ const courseSchema = new mongoose.Schema({
         // arrow function does not work here. They don't have 'this'
         required: function() { return this.isPublished; }, // If isPublished, then price is required
         min: 10,
-        max: 500
+        max: 500,
+        get: value => Math.round(value), // round value when fetching price
+        set: value => Math.round(value) // round value when inserting value
     }
 });
 
