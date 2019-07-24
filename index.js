@@ -56,16 +56,14 @@ async function getCourses() {
 }
 
 async function updateCourse(id) {
-    // Approach two: Update first
-    // Update all courses that have a value of false for isPublished
-    // const course = await Course.update({ isPublished: false});
-    const result = await Course.update({ _id: id }, {
+    // Approach two: Update first and get the (original) document updated
+    const course = await Course.findByIdAndUpdate(id, {
         $set: {
-            author: 'Mosh311313',
-            isPublished: false
+            author: 'James',
+            isPublished: true
         }
     });
-    console.log(result);
+    console.log(course);
 }
 
 /**
